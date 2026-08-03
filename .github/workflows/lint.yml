@@ -1,0 +1,48 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.10"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+      - run: uv sync
+        working-directory: backend
+      - name: ruff check
+        run: uv run ruff check app tests
+        working-directory: backend
+      - name: ruff format
+        run: uv run ruff format --check app tests
+        working-directory: backend
+      - name: pylint
+        run: uv run pylint app
+        working-directory: backend
+      - name: bandit
+        run: uv run bandit -r app -ll
+        working-directory: backend
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - name: biome
+        run: bun run --filter frontend lint:check

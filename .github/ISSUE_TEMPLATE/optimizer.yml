@@ -1,0 +1,57 @@
+name: Otimizador
+description: Problemas na geração ou na qualidade dos horários propostos
+title: "<Seu Título>"
+labels: ["Otimizador", "status: Aguardando revisão"]
+body:
+  - type: markdown
+    attributes:
+      value: "Use este template para problemas de modelagem ou de resultado do otimizador. Para lentidão, use o template de Performance. NÃO ESQUEÇA DE TROCAR O TÍTULO"
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo de problema
+      options:
+        - Restrição desrespeitada
+        - Solução inviável para os docentes
+        - Resultado pior do que uma alternativa óbvia
+        - Nenhuma solução encontrada
+        - Modelagem precisa ser revista
+    validations:
+      required: true
+  - type: textarea
+    id: descricao
+    attributes:
+      label: Descrição
+      description: O que o otimizador produziu e por que isso está errado?
+    validations:
+      required: true
+  - type: textarea
+    id: entrada
+    attributes:
+      label: Dados de entrada
+      description: Disciplinas, janelas de horário e disponibilidades usadas. Se possível, anexe o cenário.
+    validations:
+      required: true
+  - type: textarea
+    id: esperado
+    attributes:
+      label: Resultado esperado
+      description: Qual solução seria aceitável e por quê
+    validations:
+      required: true
+  - type: input
+    id: metricas
+    attributes:
+      label: Métricas observadas
+      placeholder: "ex: 12 conflitos e 180 alunos atendidos; esperado no máximo 5 conflitos"
+  - type: input
+    id: versao
+    attributes:
+      label: Versão do sistema (commit ou branch)
+    validations:
+      required: true
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Contexto adicional
+      description: Insira qualquer outra informação extra que julgar relevante

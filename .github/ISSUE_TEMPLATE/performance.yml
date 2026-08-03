@@ -1,0 +1,77 @@
+name: Performance
+description: Lentidão, travamentos ou consumo alto de recursos
+title: "<Seu Título>"
+labels: ["Performance", "status: Aguardando revisão"]
+body:
+  - type: markdown
+    attributes:
+      value: "# Informe onde ocorre e como medir o problema. NÃO ESQUEÇA DE TROCAR O TÍTULO"
+  - type: textarea
+    id: descricao
+    attributes:
+      label: Descrição
+    validations:
+      required: true
+  - type: dropdown
+    id: tipo_de_problema
+    attributes:
+      label: Tipo de problema
+      description: Selecione o tipo de problema de performance encontrado.
+      options:
+        - Carregamento demorado da página
+        - Interface travando ou engasgando
+        - Resposta lenta da API
+        - Otimizador demorando demais
+        - Consumo excessivo de memória no navegador
+    validations:
+      required: true
+  - type: textarea
+    id: onde
+    attributes:
+      label: Dê mais detalhes do problema (Especifique a tela, o que você estava fazendo e o que observou)
+    validations:
+      required: true
+  - type: textarea
+    id: passos
+    attributes:
+      label: Passos para reproduzir
+      placeholder: "1. Acesse a tela de horários\n2.\n3."
+    validations:
+      required: true
+  - type: input
+    id: tempo
+    attributes:
+      label: Tempo observado
+      description: Se possível, informe quanto tempo a operação levou e quanto seria aceitável
+      placeholder: "ex: 25s para carregar a grade, esperado menos de 3s"
+  - type: input
+    id: volume
+    attributes:
+      label: Volume de dados
+      description: Ajuda a reproduzir o cenário
+      placeholder: "ex: 40 disciplinas, 300 alunos, 6 janelas de horário"
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Navegador
+      options:
+        - Google Chrome
+        - Microsoft Edge
+        - Firefox
+        - Opera
+        - Safari
+        - Outros
+        - N/A
+    validations:
+      required: true
+  - type: input
+    id: versao
+    attributes:
+      label: Versão do sistema (commit ou branch)
+    validations:
+      required: true
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Contexto adicional
+      description: Insira qualquer outra informação extra que julgar relevante

@@ -1,0 +1,11 @@
+.vscode/*
+!.vscode/extensions.json
+node_modules/
+
+.env
+.devbox/
+.venv/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

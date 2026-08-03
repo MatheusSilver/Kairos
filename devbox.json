@@ -1,0 +1,59 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.17.2/.schema/devbox.schema.json",
+  "packages": [
+    "python@3.10",
+    "uv@latest",
+    "bun@latest",
+    "postgresql@18"
+  ],
+  "env": {
+    "UV_PYTHON_PREFERENCE": "only-system",
+    "UV_PROJECT_ENVIRONMENT": "$PWD/.venv"
+  },
+  "shell": {
+    "init_hook": [
+      "echo 'Kairos — devbox run help'"
+    ],
+    "scripts": {
+      "help": [
+        "echo 'setup     cria o .env e instala dependencias  [--env|--backend|--frontend]'",
+        "echo 'up        stack completa em Docker (watch)'",
+        "echo 'down      para a stack'",
+        "echo 'reset     para a stack e apaga o banco'",
+        "echo 'logs      acompanha os logs'",
+        "echo 'infra     apenas db + adminer + mailcatcher'",
+        "echo 'api       backend em :8000'",
+        "echo 'web       frontend em :5173'",
+        "echo 'migrate   alembic upgrade head'",
+        "echo 'revision  gera uma migration automatica'",
+        "echo 'prestart  espera o db, migra e popula'",
+        "echo 'psql      abre um shell psql'",
+        "echo 'test      testes do backend  [--backend|--e2e|--all]'",
+        "echo 'test-e2e  testes ponta a ponta (Playwright)'",
+        "echo 'lint      ruff, pylint, bandit e biome  [--backend|--frontend|--fix]'",
+        "echo 'client    regenera o client do frontend'"
+      ],
+
+      "setup": ["bash ${DEVBOX_PROJECT_ROOT}/scripts/setup.sh \"$@\""],
+
+      "up": ["docker compose watch"],
+      "down": ["docker compose down"],
+      "reset": ["docker compose down -v --remove-orphans"],
+      "logs": ["docker compose logs -f"],
+      "infra": ["docker compose up -d db adminer mailcatcher"],
+
+      "api": ["cd backend && uv run fastapi dev app/main.py"],
+      "web": ["bun run dev"],
+
+      "migrate": ["cd backend && uv run alembic upgrade head"],
+      "revision": ["cd backend && uv run alembic revision --autogenerate -m \"$*\""],
+      "prestart": ["cd backend && uv run bash scripts/prestart.sh"],
+      "psql": ["set -a && . ./.env && set +a && psql \"postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@localhost:$POSTGRES_PORT/$POSTGRES_DB\""],
+
+      "test": ["bash ${DEVBOX_PROJECT_ROOT}/scripts/test.sh \"$@\""],
+      "test-e2e": ["bash ${DEVBOX_PROJECT_ROOT}/scripts/test.sh --e2e"],
+      "lint": ["bash ${DEVBOX_PROJECT_ROOT}/scripts/lint.sh \"$@\""],
+      "client": ["bash ${DEVBOX_PROJECT_ROOT}/scripts/generate-client.sh"]
+    }
+  }
+}

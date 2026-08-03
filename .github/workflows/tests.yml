@@ -33,7 +33,7 @@ jobs:
         working-directory: backend
       - run: docker compose down -v --remove-orphans
       - name: Store coverage files
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: coverage-html
           path: backend/htmlcov
@@ -69,7 +69,7 @@ jobs:
       - run: docker compose down -v --remove-orphans
       - name: Upload Playwright report
         if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: playwright-report
           path: frontend/playwright-report

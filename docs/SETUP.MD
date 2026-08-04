@@ -8,7 +8,7 @@ O guia a partir daqui assume que você está usando um Sistema Operacional Linux
 
 - Docker e Docker Compose
 - DevBox
-- Python 3.10 - (Instalado pelo DevBox)
+- Python 3.14 - (Instalado pelo DevBox)
 - uv - (Instalado pelo DevBox)
 - Bun - (Instalado pelo DevBox)
 - PostgreSQL client - (Instalado pelo DevBox)

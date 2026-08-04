@@ -109,7 +109,7 @@ python -c "import secrets; print(secrets.token_urlsafe(32))"
 
 ### Staging
 
-O deploy de staging acontece automaticamente a cada push na branch `main`.
+O deploy de staging acontece automaticamente a cada push na branch `master`. Também é possível disparar manualmente pela aba Actions, escolhendo o workflow e clicando em Run workflow.
 
 ### Produção
 

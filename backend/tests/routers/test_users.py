@@ -30,7 +30,7 @@ def test_read_user_me_normal_user(
 def test_read_user_me_without_token(client: TestClient) -> None:
     r = client.get(f"{settings.API_V1_STR}/users/me")
 
-    assert r.status_code == 403
+    assert r.status_code == 401
 
 
 def test_read_user_me_invalid_token(client: TestClient) -> None:

@@ -190,6 +190,8 @@ Seu código deve atender aos pontos abaixo.
 > [!CAUTION]
 > A CI exige **90% de cobertura** no backend e reprova a PR abaixo disso. Nenhuma PR será aceita se os testes ou os linters não passarem.
 
+Os workflows de testes e de linters rodam a cada push em qualquer branch, então você não precisa abrir uma PR para ver o resultado. O SonarQube roda apenas em `master` e nas PRs que apontam para ela.
+
 ## Dúvidas?
 
 Se tiver dúvidas sobre como contribuir, use um dos caminhos abaixo.

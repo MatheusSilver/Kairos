@@ -13,6 +13,10 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    open-pull-requests-limit: 10
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
     commit-message:
       prefix: ⬆
     labels: [dependencies, internal]
@@ -21,11 +25,18 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    open-pull-requests-limit: 10
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
     commit-message:
       prefix: ⬆
     labels: [dependencies, internal]
     ignore:
       - dependency-name: "@hey-api/openapi-ts"
+      # TypeScript 7 has no compiler API yet; openapi-ts needs it
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
   # Docker
   - package-ecosystem: docker
     directories:

@@ -1,2 +1,6 @@
 [tool.uv.workspace]
 members = ["backend"]
+
+[tool.uv]
+# SQLAlchemy 2.1 is two weeks old; hold until sqlmodel settles on it
+constraint-dependencies = ["sqlalchemy<2.1"]
